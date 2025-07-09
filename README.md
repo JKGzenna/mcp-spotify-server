@@ -151,7 +151,7 @@ This tool simplifies token management and integrates seamlessly with MCP workflo
 ### Installation
 
 ```bash
-git clone https://github.com/JKGzenna/spotify-mcp-server.git
+git clone https://github.com/JKGzenna/mcp-spotify-server.git
 cd spotify-mcp-server
 npm i
 npm run build
