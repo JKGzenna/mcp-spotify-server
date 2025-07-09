@@ -7,7 +7,7 @@ A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) se
 
 ## Security Features
 
-- ### AuthTest class for manual token generation
+- ### 'AuthTest' class for manual token generation
   The `authTest` class (previously `auth`) allows manual token generation by running the command `npm run auth`. This process generates an `accessToken` and `refreshToken` based on the `clientId` and `clientSecret` specified in the `spotify-config.json` file. The tokens are updated in the configuration file after user confirmation in the browser.
 
 - ### 'AuthApp' class associated to a new MCP tool named 'getAccessTokenTool'
