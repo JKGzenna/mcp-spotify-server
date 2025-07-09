@@ -220,7 +220,7 @@ npm run auth
 7. The server will automatically refresh the access token when needed, using the refresh token.
 
 
-## accessToken view & check status
+## 'accessToken' terminal view & check status
 
 You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
 
