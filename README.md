@@ -144,7 +144,7 @@ This tool simplifies token management and integrates seamlessly with MCP workflo
 
 ### Prerequisites
 
-- Node.js v16+ minimum (recommended v22+)
+- Node.js v20+ minimum (recommended v22+)
 - A Spotify Premium account
 - A registered Spotify Developer application (https://developer.spotify.com/dashboard)
 
