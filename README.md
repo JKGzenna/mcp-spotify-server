@@ -5,15 +5,20 @@
 
 A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants like Cursor & Claude to control Spotify playback and manage playlists.
 
-## New Security Features
+## Security Features
 
-### AuthTest
+### AuthTest class for manual token generation
 The `authTest` class (previously `auth`) allows manual token generation by running the command `npm run auth`. This process generates an `accessToken` and `refreshToken` based on the `clientId` and `clientSecret` specified in the `spotify-config.json` file. The tokens are updated in the configuration file after user confirmation in the browser.
 
-### AuthApp & getAccessTokenTool
+### 'AuthApp' class associated to a new MCP tool named 'getAccessTokenTool'
 The `getAccessTokenTool` is a new MCP tool that enables AI clients like Claude, Cursor and VsCode  to fetch Spotify tokens programmatically. It uses the `clientId` and `clientSecret` from `spotify-config.json` to generate an `accessToken` and `refreshToken`. After user confirm Spotify Authorizationin the browser, the user is redirected back to the AI client, and browser shows a success message via the Redirect URI `http://127.0.0.1:8088`, the tool updates the `spotify-config.json` file with the new tokens (accessToken & refreshToken).
 
-This tool simplifies token management and integrates seamlessly with MCP workflows.
+This MCP tool simplifies token management and integrates seamlessly with MCP workflows.
+
+### 'accessToken' terminal view & check status
+
+You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
+
 
 ## Example Interactions
 
