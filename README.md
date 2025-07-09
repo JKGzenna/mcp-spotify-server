@@ -155,7 +155,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
 
 ```bash
 git clone https://github.com/JKGzenna/mcp-spotify-server.git
-cd spotify-mcp-server
+cd mcp-spotify-server
 npm i
 npm run build
 ```
@@ -180,7 +180,7 @@ Create a `spotify-config.json` file in the project root (you can copy and modify
 cp spotify-config.example.json spotify-config.json
 ```
 
-Then edit the file with your credentials:
+Then edit the 'spotify-config.json' file with your credentials and redirectUri:
 
 ```json
 {
@@ -237,7 +237,7 @@ To use your MCP server with Claude Desktop, add it to your Claude configuration:
   "mcpServers": {
     "spotify": {
       "command": "node",
-      "args": ["spotify-mcp-server/build/index.js"]
+      "args": ["~/../mcp-spotify-server/build/index.js"]
     }
   }
 }
@@ -246,7 +246,7 @@ To use your MCP server with Claude Desktop, add it to your Claude configuration:
 For Cursor, go to the MCP tab in `Cursor Settings` (command + shift + J). Add a server with this command:
 
 ```bash
-node path/to/spotify-mcp-server/build/index.js
+node path/to/mcp-spotify-server/build/index.js
 ```
 
 To set up your MCP correctly with Cline ensure you have the following file configuration set `cline_mcp_settings.json`:
@@ -256,7 +256,7 @@ To set up your MCP correctly with Cline ensure you have the following file confi
   "mcpServers": {
     "spotify": {
       "command": "node",
-      "args": ["~/../spotify-mcp-server/build/index.js"],
+      "args": ["~/../mcp-spotify-server/build/index.js"],
       "autoApprove": ["getListeningHistory", "getNowPlaying"]
     }
   }
