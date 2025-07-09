@@ -220,9 +220,9 @@ npm run auth
 7. The server will automatically refresh the access token when needed, using the refresh token.
 
 
-## Token Test
+## accessToken view & check status
 
-You can check token status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
+You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
 
 
 ## Integrating with Claude Desktop, Cursor, and VsCode [Via Cline model extension](https://marketplace.visualstudio.com/items/?itemName=saoudrizwan.claude-dev)
