@@ -1,5 +1,10 @@
 # Spotify MCP Server
 
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" width="30" height="30">
+<h1>Spotify MCP Server</h1>
+</div>
+
 A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants like Cursor & Claude to control Spotify playback and manage playlists.
 
 ## New Security Features
