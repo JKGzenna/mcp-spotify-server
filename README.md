@@ -3,7 +3,7 @@
 <h1>Spotify MCP Server</h1>
 </div>
 
-A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants like Cursor & Claude to control Spotify playback and manage playlists.
+*A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants like Cursor & Claude to control Spotify playback and manage playlists.*
 
 ## Security Features
 
