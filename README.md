@@ -29,7 +29,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
 
 ### Read Operations
 
-1. **searchSpotify**
+1. **'searchSpotify'**
 
    - **Description**: Search for tracks, albums, artists, or playlists on Spotify
    - **Parameters**:
@@ -39,14 +39,14 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: List of matching items with their IDs, names, and additional details
    - **Example**: `searchSpotify("bohemian rhapsody", "track", 20)`
 
-2. **getNowPlaying**
+2. **'getNowPlaying'**
 
    - **Description**: Get information about the currently playing track on Spotify
    - **Parameters**: None
    - **Returns**: Object containing track name, artist, album, playback progress, duration, and playback state
    - **Example**: `getNowPlaying()`
 
-3. **getMyPlaylists**
+3. **'getMyPlaylists'**
 
    - **Description**: Get a list of the current user's playlists on Spotify
    - **Parameters**:
@@ -55,7 +55,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Array of playlists with their IDs, names, track counts, and public status
    - **Example**: `getMyPlaylists(10, 0)`
 
-4. **getPlaylistTracks**
+4. **'getPlaylistTracks'**
 
    - **Description**: Get a list of tracks in a specific Spotify playlist
    - **Parameters**:
@@ -65,7 +65,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Array of tracks with their IDs, names, artists, album, duration, and added date
    - **Example**: `getPlaylistTracks("37i9dQZEVXcJZyENOWUFo7")`
 
-5. **getRecentlyPlayed**
+5. **'getRecentlyPlayed'**
 
    - **Description**: Retrieves a list of recently played tracks from Spotify.
    - **Parameters**:
@@ -75,7 +75,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
 
 ### Play / Create Operations
 
-1. **playMusic**
+1. **'playMusic'**
 
    - **Description**: Start playing a track, album, artist, or playlist on Spotify
    - **Parameters**:
@@ -87,7 +87,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Example**: `playMusic({ uri: "spotify:track:6rqhFgbbKwnb9MLmUQDhG6" })`
    - **Alternative**: `playMusic({ type: "track", id: "6rqhFgbbKwnb9MLmUQDhG6" })`
 
-2. **pausePlayback**
+2. **'pausePlayback'**
 
    - **Description**: Pause the currently playing track on Spotify
    - **Parameters**:
@@ -95,7 +95,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status
    - **Example**: `pausePlayback()`
 
-3. **skipToNext**
+3. **'skipToNext'**
 
    - **Description**: Skip to the next track in the current playback queue
    - **Parameters**:
@@ -103,7 +103,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status
    - **Example**: `skipToNext()`
 
-4. **skipToPrevious**
+4. **'skipToPrevious'**
 
    - **Description**: Skip to the previous track in the current playback queue
    - **Parameters**:
@@ -111,7 +111,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status
    - **Example**: `skipToPrevious()`
 
-5. **createPlaylist**
+5. **'createPlaylist'**
 
    - **Description**: Create a new playlist on Spotify
    - **Parameters**:
@@ -121,7 +121,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Object with the new playlist's ID and URL
    - **Example**: `createPlaylist({ name: "Workout Mix", description: "Songs to get pumped up", public: false })`
 
-6. **addTracksToPlaylist**
+6. **'addTracksToPlaylist'**
 
    - **Description**: Add tracks to an existing Spotify playlist
    - **Parameters**:
@@ -131,7 +131,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status and snapshot ID
    - **Example**: `addTracksToPlaylist({ playlistId: "3cEYpjA9oz9GiPac4AsH4n", trackUris: ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"] })`
 
-7. **addToQueue**
+7. **'addToQueue'**
 
    - **Description**: Adds a track, album, artist or playlist to the current playback queue
    - - **Parameters**:
@@ -180,7 +180,7 @@ Create a `spotify-config.json` file in the project root (you can copy and modify
 cp spotify-config.example.json spotify-config.json
 ```
 
-Then edit the 'spotify-config.json' file with your credentials and redirectUri:
+Then edit the ``spotify-config.json`` file with your credentials and redirectUri:
 
 ```json
 {
