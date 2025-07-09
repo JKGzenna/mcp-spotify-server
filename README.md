@@ -225,7 +225,7 @@ npm run auth
 You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
 
 
-## Integrating with Claude Desktop, Cursor, and VsCode [via Cline model extension](https://marketplace.visualstudio.com/items/?itemName=saoudrizwan.claude-dev)
+## Integrating with Claude Desktop, Cursor, and VsCode [via 'cline' model extension](https://marketplace.visualstudio.com/items/?itemName=saoudrizwan.claude-dev)
 
 To use your MCP server with Claude Desktop, add it to your Claude configuration:
 
