@@ -1,5 +1,3 @@
-# Spotify MCP Server
-
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" width="30" height="30">
 <h1>Spotify MCP Server</h1>
