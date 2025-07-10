@@ -81,7 +81,7 @@
    - **Returns**: If tracks are found it returns a formatted list of recently played tracks else a message stating: "You don't have any recently played tracks on Spotify".
    - **Example**: `getRecentlyPlayed({ limit: 10 })`
 
-### Play / Create Operations
+### Play & Create Operations
 
 9. **'playMusic'**
 
@@ -152,15 +152,17 @@
    - **Alternative**: `addToQueue({ type: "track", id: "6rqhFgbbKwnb9MLmUQDhG6" })`
 
 
-## Setup
 
-### Prerequisites
+
+## MCP Spotify Server Setup
+
+### Requirements:
 
 - Node.js v20+ minimum (recommended v22+)
 - A Spotify Premium account
-- A registered Spotify Developer application (https://developer.spotify.com/dashboard)
+- A registered Spotify Developer application that will be used to generate the clientId and clientSecret (https://developer.spotify.com/dashboard)
 
-### Installation
+### Installation:
 
 ```bash
 git clone https://github.com/JKGzenna/mcp-spotify-server.git
@@ -169,7 +171,7 @@ npm i
 npm run build
 ```
 
-### Creating a Spotify Developer Application
+### 1. Creating a Spotify Developer Application
 
 1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 2. Log in with your Spotify account
@@ -180,16 +182,16 @@ npm run build
 7. Click **Show Client Secret** to reveal your **Client Secret**
 8. If yo want edit this configuration later, click **Edit Settings**
 
-### Spotify API Configuration
+### 2. Spotify API Configuration
 
-Create a `spotify-config.json` file in the project root (you must copy and modify the provided example):
+*Create a `spotify-config.json` file in the project root (you must copy and modify the provided example):*
 
 ```bash
 # Copy the example config file with this command
 cp spotify-config.example.json spotify-config.json
 ```
 
-Then edit the ``spotify-config.json`` file with your credentials and redirectUri:
+*Then edit the ``spotify-config.json`` file with your credentials and redirectUri:*
 
 ```json
 {
@@ -199,17 +201,17 @@ Then edit the ``spotify-config.json`` file with your credentials and redirectUri
 }
 ```
 
-### Authentication Process (First Time - obtain 'accessToken' & 'refreshToken')
+### 3. Authentication Process (First Time - obtain 'accessToken' & 'refreshToken')
 
 *The Spotify API uses OAuth 2.0 for authentication, follow these steps to authenticate your application:*
 
-1. Run the authentication script:
+1. Run the application using the authentication script:
 
 ```bash
 npm run auth
 ```
 
-2. The script will generate an authorization URL. Open this URL in your web browser.
+2. The ``npm run auth`` script will open a browser and go to an Spotify authorization URL that you need to authorize in your browser manually.
 
 3. You'll be prompted to log in to Spotify and authorize your application.
 
