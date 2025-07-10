@@ -1,4 +1,7 @@
+#!/usr/bin/env node
+
 import { loadSpotifyConfig, authorizeSpotify } from './utils.js';
+import { TokenRefresher } from './utils.js';
 import type { SpotifyHandlerExtra, tool } from './types.js';
 
 export const getAccessTokenTool: tool<Record<string, never>> = {
@@ -7,26 +10,42 @@ export const getAccessTokenTool: tool<Record<string, never>> = {
   schema: {},
   handler: async (_args, _extra: SpotifyHandlerExtra) => {
     try {
-      await authorizeSpotify();
+      await TokenRefresher.refreshAccessToken();
       const updatedConfig = loadSpotifyConfig();
       return {
         content: [
           {
             type: 'text',
-            text: `Successfully obtained Spotify tokens:\nAccess Token: ${updatedConfig.accessToken}\nRefresh Token: ${updatedConfig.refreshToken}`,
+            text: `Successfully refreshed Spotify tokens:\nAccess Token: ${updatedConfig.accessToken}\nRefresh Token: ${updatedConfig.refreshToken}`,
           },
         ],
       };
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      return {
-        content: [
-          {
-            type: 'text',
-            text: `Failed to authorize Spotify: ${errorMessage}`,
-          },
-        ],
-      };
+    } catch (refreshError) {
+      console.error('Failed to refresh access token:', refreshError);
+      console.log('Attempting full authorization flow...');
+
+      try {
+        await authorizeSpotify();
+        const updatedConfig = loadSpotifyConfig();
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Successfully obtained Spotify tokens:\nAccess Token: ${updatedConfig.accessToken}\nRefresh Token: ${updatedConfig.refreshToken}`,
+            },
+          ],
+        };
+      } catch (authError) {
+        const errorMessage = authError instanceof Error ? authError.message : String(authError);
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `Failed to authorize Spotify: ${errorMessage}`,
+            },
+          ],
+        };
+      }
     }
   },
 };
