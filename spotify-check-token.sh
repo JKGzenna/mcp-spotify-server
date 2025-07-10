@@ -16,4 +16,6 @@ fi
 
 # Use the 'accessToken' obtained from the config file in the Spotify API request
 curl -s -o /dev/null -H "Authorization: Bearer $accessToken" https://api.spotify.com/v1/me
-  echo -e "\n¡¡¡ accessToken successfully validated !!!\n \n$accessToken\n"
+  echo -e "\nThe accessToken & refreshToken are created and validated using the credentials provided in the 'spotify-config.json' file , for security reasons, the refreshToken is not displayed, but will be used automatically for refresh the accessToken when needed.\n \n--> accessToken for Claude client:\n$accessToken\n"
+  echo -e "\n--> accessToken with Bearer Header:\nAuthorization: Bearer $accessToken\n"
+  echo -e "\n--> accessToken for use with Plugged.in spotify config:\nOAUTH2_TOKEN=$accessToken\n"
