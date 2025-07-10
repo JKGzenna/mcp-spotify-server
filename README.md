@@ -18,8 +18,8 @@
   The `refreshAccessToken` is a new MCP tool that enables AI clients like Claude, Cursor and VsCode  to refresh the Spotify accessToken programmatically using the refreshToken. It uses the `refreshToken` from `spotify-config.json` to generate an new`accessToken` without the need for user confirmation in the browser. 
   This MCP tool simplifies token management and integrates seamlessly with MCP workflows and eliminates the need for manual intervention.
     
-      1. ### 'accessToken' terminal view & check status
-      You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
+  - ### 'accessToken' terminal view & check status
+    You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
 
 
 ## Example Interactions
