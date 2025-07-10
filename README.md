@@ -233,7 +233,7 @@ npm run auth
 *If detects a valid accessToken when running the ``npm run auth`` command, it will not prompt you to authenticate again, and automatically refresh the accessToken using the existing refreshToken using the ``refreshAccessToken`` tool.*
 
 
-### 4b.Authentication Process (Subsequent Times - obtain 'accessToken' using 'refreshToken' tool without manual user browser confirmation)
+### 4b. Authentication Process (Subsequent Times - obtain 'accessToken' using 'refreshToken' tool without manual user browser confirmation)
 
 1. In the next executions of ``npm run auth``, it will automatically refresh the ``accessToken`` with the existing ``refreshToken`` using the ``refreshAccessToken`` tool, the server always will automatically refresh the ``accessToken`` when needed, using the ``refreshAccessToken`` tool, only if the ``refreshToken`` is expired, calls the ``getAccessToken`` tool for obtain a new ``accessToken`` and ``refreshToken``, in this case, you will need to confirm the authentication in the browser again.
 
