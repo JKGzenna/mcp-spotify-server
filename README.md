@@ -223,11 +223,11 @@ npm run auth
 
 ```json
 {
-  "clientId": "your-client-id",
-  "clientSecret": "your-client-secret",
+  "clientId": "your-spotify-clientId",
+  "clientSecret": "your-spotify-clientSecret",
   "redirectUri": "http://127.0.0.1:8088/callback",
-  "accessToken": "BQAi9Pn...kKQ",
-  "refreshToken": "AQDQcj...7w"
+  "accessToken": "BQCC4lx...pk2",
+  "refreshToken": "AQDYbe...jk"
 }
 ```
 *If detects a valid accessToken when running the ``npm run auth`` command, it will not prompt you to authenticate again, and automatically refresh the accessToken using the existing refreshToken using the ``refreshAccessToken`` tool.*
