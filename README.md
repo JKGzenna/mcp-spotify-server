@@ -19,8 +19,8 @@
   This MCP tool simplifies token management and integrates seamlessly with MCP workflows and eliminates the need for manual intervention.
     
   - ### 'accessToken' terminal view & check status
-    You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
-
+    **You can view 'accessToken' and check its status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.**
+    
 
 
 ## Example Interactions
@@ -156,13 +156,13 @@
 
 ## MCP Spotify Server Setup
 
-### Requirements:
+### 0. Requirements for a correct installation:
 
 - Node.js v20+ minimum (recommended v22+)
 - A Spotify Premium account
 - A registered Spotify Developer application that will be used to generate the clientId and clientSecret (https://developer.spotify.com/dashboard)
 
-### Installation:
+### 1. Clone the repository, installation & build:
 
 ```bash
 git clone https://github.com/JKGzenna/mcp-spotify-server.git
@@ -171,7 +171,7 @@ npm i
 npm run build
 ```
 
-### 1. Creating a Spotify Developer Application
+### 2. Creating a Spotify Developer Application
 
 1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 2. Log in with your Spotify account
@@ -182,7 +182,7 @@ npm run build
 7. Click **Show Client Secret** to reveal your **Client Secret**
 8. If yo want edit this configuration later, click **Edit Settings**
 
-### 2. Spotify API Configuration
+### 3. Spotify API Configuration
 
 *Create a `spotify-config.json` file in the project root (you must copy and modify the provided example):*
 
@@ -201,7 +201,7 @@ cp spotify-config.example.json spotify-config.json
 }
 ```
 
-### 3. Authentication Process (First Time - obtain 'accessToken' & 'refreshToken')
+### 4a. Authentication Process (First Time - obtain 'accessToken' & 'refreshToken')
 
 *The Spotify API uses OAuth 2.0 for authentication, follow these steps to authenticate your application:*
 
@@ -233,7 +233,7 @@ npm run auth
 *If detects a valid accessToken when running the ``npm run auth`` command, it will not prompt you to authenticate again, and automatically refresh the accessToken using the existing refreshToken using the ``refreshAccessToken`` tool.*
 
 
-### Authentication Process (Subsequent Times - obtain 'accessToken' using 'refreshToken' tool without manual user browser confirmation)
+### 4b.Authentication Process (Subsequent Times - obtain 'accessToken' using 'refreshToken' tool without manual user browser confirmation)
 
 1. In the next executions of ``npm run auth``, it will automatically refresh the ``accessToken`` with the existing ``refreshToken`` using the ``refreshAccessToken`` tool, the server always will automatically refresh the ``accessToken`` when needed, using the ``refreshAccessToken`` tool, only if the ``refreshToken`` is expired, calls the ``getAccessToken`` tool for obtain a new ``accessToken`` and ``refreshToken``, in this case, you will need to confirm the authentication in the browser again.
 
