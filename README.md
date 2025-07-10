@@ -158,9 +158,9 @@
 
 ### 0. Requirements for a correct installation:
 
-- Node.js v20+ minimum (recommended v22+)
-- A Spotify Premium account
-- A registered Spotify Developer application that will be used to generate the clientId and clientSecret (https://developer.spotify.com/dashboard)
+- Node.js v20+ minimum (**recommended v22+**)
+- A Spotify **Premium account**
+- A registered Spotify Developer application that will be used to generate the **clientId** and **clientSecret** (https://developer.spotify.com/dashboard)
 
 ### 1. Clone the repository, installation & build:
 
