@@ -197,7 +197,9 @@ cp spotify-config.example.json spotify-config.json
 {
   "clientId": "your-spotify-clientId",
   "clientSecret": "your-spotify-clientSecret",
-  "redirectUri": "http://127.0.0.1:8088/callback"
+  "redirectUri": "http://127.0.0.1:8088/callback",
+  "accessToken": "execute_npm_run_auth_to_get_accessToken",
+  "refreshToken": "execute_npm_run_auth_to_get_resfreshToken"
 }
 ```
 
