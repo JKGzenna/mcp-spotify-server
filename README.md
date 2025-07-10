@@ -220,8 +220,6 @@ npm run auth
 }
 ```
 
-7. The server will automatically refresh the access token when needed, using the refresh token.
-
 
 ## 'accessToken' terminal view & check status
 
