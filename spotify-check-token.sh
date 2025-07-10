@@ -14,6 +14,6 @@ if [ -z "$accessToken" ]; then
   exit 1
 fi
 
-# Use the accessToken in the Spotify API request
+# Use the 'accessToken' obtained from the config file in the Spotify API request
 curl -s -o /dev/null -H "Authorization: Bearer $accessToken" https://api.spotify.com/v1/me
   echo -e "\n¡¡¡ accessToken successfully validated !!!\n \n$accessToken\n"

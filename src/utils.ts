@@ -394,3 +394,61 @@ export class TokenManager {
     return this.tokenInfo !== null && Date.now() < this.tokenInfo.expiresAt;
   }
 }
+
+/**
+ * TokenRefresher class for refreshing Spotify access tokens using refresh tokens
+ */
+export class TokenRefresher {
+  /**
+   * Refresh the access token using the refresh token from the config file
+   */
+  static async refreshAccessToken(): Promise<string> {
+    const config = loadSpotifyConfig();
+
+    if (!config.refreshToken) {
+      throw new Error('No refresh token available. Please authorize first.');
+    }
+
+    const tokenUrl = 'https://accounts.spotify.com/api/token';
+    const authHeader = `Basic ${base64Encode(`${config.clientId}:${config.clientSecret}`)}`;
+
+    const params = new URLSearchParams();
+    params.append('grant_type', 'refresh_token');
+    params.append('refresh_token', config.refreshToken);
+
+    try {
+      const response = await fetch(tokenUrl, {
+        method: 'POST',
+        headers: {
+          Authorization: authHeader,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(`Failed to refresh token: ${errorData}`);
+      }
+
+      const data = await response.json();
+
+      // Update the config with the new access token
+      config.accessToken = data.access_token;
+
+      // If a new refresh token is provided, update it too
+      if (data.refresh_token) {
+        config.refreshToken = data.refresh_token;
+      }
+
+      saveSpotifyConfig(config);
+
+      // Clear the cached Spotify API instance so it uses the new token
+      cachedSpotifyApi = null;
+
+      return data.access_token;
+    } catch (error) {
+      throw new Error(`Failed to refresh access token: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  }
+}

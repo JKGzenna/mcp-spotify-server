@@ -3,16 +3,20 @@
 <h1>MCP Spotify Server</h1>
 </div>
 
-*A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants like Cursor & Claude to control Spotify playback and manage playlists.*
+*A lightweight [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants like Cursor & Claude to control Spotify playback, playlists and manage tokens.*
 
-## Security Features
 
-- ### 'AuthTest' class for manual token generation
-  The `authTest` class (previously `auth`) allows manual token generation by running the command `npm run auth`. This process generates an `accessToken` and `refreshToken` based on the `clientId` and `clientSecret` specified in the `spotify-config.json` file. The tokens are updated in the configuration file after user confirmation in the browser.
+## Security Features (Token Management & Refresh)
 
-- ### 'AuthApp' class associated to a new MCP tool named 'getAccessTokenTool'
-  The `getAccessTokenTool` is a new MCP tool that enables AI clients like Claude, Cursor and VsCode  to fetch Spotify tokens programmatically. It uses the `clientId` and `clientSecret` from `spotify-config.json` to generate an `accessToken` and `refreshToken`. After user confirm Spotify Authorizationin the browser, the user is redirected back to the AI client, and browser shows a success message via the Redirect URI `http://127.0.0.1:8088`, the tool updates the `spotify-config.json` file with the new tokens (accessToken & refreshToken).
-This MCP tool simplifies token management and integrates seamlessly with MCP workflows.
+1. ### 'auth.ts' class for manual token generation using 'npm run auth'
+  The `auth` class (previously `authTest.ts`) allows manual token generation by running the command `npm run auth`. This process generates an `accessToken` and `refreshToken` based on the `clientId` and `clientSecret` specified in the `spotify-config.json` file. The tokens are updated in the configuration file after user confirmation in the browser.
+
+2. ### 'authApp.ts' class associated to a new MCP tool named 'getAccessToken' used by AI clients
+  The `getAccessToken` is a new MCP tool that enables AI clients like Claude, Cursor and VsCode  to fetch Spotify tokens programmatically. It uses the `clientId` and `clientSecret` from `spotify-config.json` to generate an `accessToken` and `refreshToken`. After user confirm Spotify Authorizationin the browser, the user is redirected back to the AI client, and browser shows a success message via the Redirect URI `http://127.0.0.1:8088`, the tool updates the `spotify-config.json` file with the new tokens (accessToken & refreshToken). 
+
+3. ### 'refreshToken.ts' class associated to a new MCP tool named 'refreshAccessToken'
+  The `refreshAccessToken` is a new MCP tool that enables AI clients like Claude, Cursor and VsCode  to refresh the Spotify accessToken programmatically using the refreshToken. It uses the `refreshToken` from `spotify-config.json` to generate an new`accessToken` without the need for user confirmation in the browser. 
+  This MCP tool simplifies token management and integrates seamlessly with MCP workflows and eliminates the need for manual intervention.
 
 - ### 'accessToken' terminal view & check status
   You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
@@ -21,15 +25,18 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
 ## Example Interactions
 
 - _"Get a new access token"_
+- _"Refresh the access token"_
 - _"Play Gangnam Style first song"_
 - _"Create a Snoop Dog / El Fary fusion playlist"_
 - _"Copy all the techno tracks from my workout playlist to my work playlist"_
+
+
 
 ## Tools
 
 ### Read Operations
 
-1. **'searchSpotify'**
+4. **'searchSpotify'**
 
    - **Description**: Search for tracks, albums, artists, or playlists on Spotify
    - **Parameters**:
@@ -39,14 +46,14 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: List of matching items with their IDs, names, and additional details
    - **Example**: `searchSpotify("bohemian rhapsody", "track", 20)`
 
-2. **'getNowPlaying'**
+5. **'getNowPlaying'**
 
    - **Description**: Get information about the currently playing track on Spotify
    - **Parameters**: None
    - **Returns**: Object containing track name, artist, album, playback progress, duration, and playback state
    - **Example**: `getNowPlaying()`
 
-3. **'getMyPlaylists'**
+6. **'getMyPlaylists'**
 
    - **Description**: Get a list of the current user's playlists on Spotify
    - **Parameters**:
@@ -55,7 +62,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Array of playlists with their IDs, names, track counts, and public status
    - **Example**: `getMyPlaylists(10, 0)`
 
-4. **'getPlaylistTracks'**
+7. **'getPlaylistTracks'**
 
    - **Description**: Get a list of tracks in a specific Spotify playlist
    - **Parameters**:
@@ -65,7 +72,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Array of tracks with their IDs, names, artists, album, duration, and added date
    - **Example**: `getPlaylistTracks("37i9dQZEVXcJZyENOWUFo7")`
 
-5. **'getRecentlyPlayed'**
+8. **'getRecentlyPlayed'**
 
    - **Description**: Retrieves a list of recently played tracks from Spotify.
    - **Parameters**:
@@ -75,7 +82,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
 
 ### Play / Create Operations
 
-1. **'playMusic'**
+9. **'playMusic'**
 
    - **Description**: Start playing a track, album, artist, or playlist on Spotify
    - **Parameters**:
@@ -87,7 +94,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Example**: `playMusic({ uri: "spotify:track:6rqhFgbbKwnb9MLmUQDhG6" })`
    - **Alternative**: `playMusic({ type: "track", id: "6rqhFgbbKwnb9MLmUQDhG6" })`
 
-2. **'pausePlayback'**
+10. **'pausePlayback'**
 
    - **Description**: Pause the currently playing track on Spotify
    - **Parameters**:
@@ -95,7 +102,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status
    - **Example**: `pausePlayback()`
 
-3. **'skipToNext'**
+11. **'skipToNext'**
 
    - **Description**: Skip to the next track in the current playback queue
    - **Parameters**:
@@ -103,7 +110,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status
    - **Example**: `skipToNext()`
 
-4. **'skipToPrevious'**
+12. **'skipToPrevious'**
 
    - **Description**: Skip to the previous track in the current playback queue
    - **Parameters**:
@@ -111,7 +118,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status
    - **Example**: `skipToPrevious()`
 
-5. **'createPlaylist'**
+13. **'createPlaylist'**
 
    - **Description**: Create a new playlist on Spotify
    - **Parameters**:
@@ -121,7 +128,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Object with the new playlist's ID and URL
    - **Example**: `createPlaylist({ name: "Workout Mix", description: "Songs to get pumped up", public: false })`
 
-6. **'addTracksToPlaylist'**
+14. **'addTracksToPlaylist'**
 
    - **Description**: Add tracks to an existing Spotify playlist
    - **Parameters**:
@@ -131,7 +138,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status and snapshot ID
    - **Example**: `addTracksToPlaylist({ playlistId: "3cEYpjA9oz9GiPac4AsH4n", trackUris: ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"] })`
 
-7. **'addToQueue'**
+15. **'addToQueue'**
 
    - **Description**: Adds a track, album, artist or playlist to the current playback queue
    - - **Parameters**:
@@ -142,6 +149,7 @@ This MCP tool simplifies token management and integrates seamlessly with MCP wor
    - **Returns**: Success status
    - **Example**: `addToQueue({ uri: "spotify:track:6rqhFgbbKwnb9MLmUQDhG6" })`
    - **Alternative**: `addToQueue({ type: "track", id: "6rqhFgbbKwnb9MLmUQDhG6" })`
+
 
 ## Setup
 
@@ -164,16 +172,16 @@ npm run build
 
 1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)
 2. Log in with your Spotify account
-3. Click the "Create an App" button
-4. Fill in the App name and Appdescription, then, add a Redirect URI (e.g., `http://127.0.0.1:8088/callback`) & check the 'Web Playback SDK' and 'Web API' checkboxes.
-5. Accept the Terms of service checkbox and click "Save"
+3. Click the **Create an App** button
+4. Fill in the **App name** and **App description**, then, add a **Redirect URI** (e.g., `http://127.0.0.1:8088/callback`) & check the **Web Playback SDK** and **Web API** checkboxes.
+5. Accept the Terms of service checkbox and click **Save**
 6. In your new app's dashboard, you'll see your **Client ID**
-7. Click "Show Client Secret" to reveal your **Client Secret**
-8. If yo want edit this configuration later, click "Edit Settings"
+7. Click **Show Client Secret** to reveal your **Client Secret**
+8. If yo want edit this configuration later, click **Edit Settings**
 
 ### Spotify API Configuration
 
-Create a `spotify-config.json` file in the project root (you can copy and modify the provided example):
+Create a `spotify-config.json` file in the project root (you must copy and modify the provided example):
 
 ```bash
 # Copy the example config file with this command
@@ -190,9 +198,9 @@ Then edit the ``spotify-config.json`` file with your credentials and redirectUri
 }
 ```
 
-### Authentication Process
+### Authentication Process (First Time - obtain 'accessToken' & 'refreshToken')
 
-The Spotify API uses OAuth 2.0 for authentication. Follow these steps to authenticate your application:
+*The Spotify API uses OAuth 2.0 for authentication, follow these steps to authenticate your application:*
 
 1. Run the authentication script:
 
@@ -206,7 +214,7 @@ npm run auth
 
 4. After authorization, Spotify will redirect you to your specified redirect URI with a code parameter in the URL.
 
-5. The authentication script will automatically exchange this code for access and refresh tokens.
+5. The authentication script will automatically exchange this code for ``accessToken`` and ``refresToken``.
 
 6. These tokens will be saved to your `spotify-config.json` file, which will now look something like:
 
@@ -219,16 +227,22 @@ npm run auth
   "refreshToken": "AQDQcj...7w"
 }
 ```
+*If detects a valid accessToken when running the ``npm run auth`` command, it will not prompt you to authenticate again, and automatically refresh the accessToken using the existing refreshToken using the ``refreshAccessToken`` tool.*
 
 
-## 'accessToken' terminal view & check status
+### Authentication Process (Subsequent Times - obtain 'accessToken' using 'refreshToken' tool without manual user browser confirmation)
 
-You can view and check accessToken status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.
+1. In the next executions of ``npm run auth``, it will automatically refresh the ``accessToken`` with the existing ``refreshToken`` using the ``refreshAccessToken`` tool, the server always will automatically refresh the ``accessToken`` when needed, using the ``refreshAccessToken`` tool, only if the ``refreshToken`` is expired, calls the ``getAccessToken`` tool for obtain a new ``accessToken`` and ``refreshToken``, in this case, you will need to confirm the authentication in the browser again.
 
 
-## Integrating with Claude Desktop, Cursor, and VsCode [via 'cline' model extension](https://marketplace.visualstudio.com/items/?itemName=saoudrizwan.claude-dev)
+### 'accessToken' terminal view & check status
 
-To use your MCP server with Claude Desktop, add it to your Claude configuration:
+**You can view 'accessToken' and check its status using ``sh spotify-check-token.sh`` in a terminal prompted in the root of the project.**
+
+
+### Integrating with Claude Desktop, Cursor, and VsCode [via 'cline' model extension](https://marketplace.visualstudio.com/items/?itemName=saoudrizwan.claude-dev)
+
+*To use your MCP server with Claude Desktop, add it to your Claude configuration:*
 
 ```json
 {
@@ -241,13 +255,13 @@ To use your MCP server with Claude Desktop, add it to your Claude configuration:
 }
 ```
 
-For Cursor, go to the MCP tab in `Cursor Settings` (command + shift + J). Add a server with this command:
+*For Cursor, go to the MCP tab in `Cursor Settings` (command + shift + J). Add a server with this command:*
 
 ```bash
 node path/to/mcp-spotify-server/build/index.js
 ```
 
-To set up your MCP correctly with Cline ensure you have the following file configuration set `cline_mcp_settings.json`:
+*To set up your MCP correctly with Cline ensure you have the following file configuration set* `cline_mcp_settings.json`:
 
 ```json
 {
@@ -261,4 +275,4 @@ To set up your MCP correctly with Cline ensure you have the following file confi
 }
 ```
 
-You can add additional tools to the auto approval array to run the tools without intervention.
+*You can add additional tools to the auto approval array to run the tools without intervention.*
